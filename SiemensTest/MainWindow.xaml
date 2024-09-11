@@ -1,0 +1,179 @@
+﻿<Window x:Class="SiemensTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SiemensTest"
+        WindowState="Maximized"
+        mc:Ignorable="d" Background="#1D1D1C"
+        Title="Siemens S7 Panel - Merlin Connect Tool" Height="450" Width="800"
+        Loaded="Window_Loaded">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+        <Border BorderThickness="20">
+            <Grid Background="#020202">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <GroupBox Header="PLC" Grid.Row="0" Margin="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <!-- row 0 -->
+                        <TextBlock Grid.Row="0" Grid.Column="0" x:Name="tbkTipoVariabile" Text="IP:" Margin="5"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" x:Name="tbxImpostaVariabile" Text="192.168.0.5" Margin="5" Width="100" HorizontalAlignment="Left" Padding="5"/>
+
+                        <Button Grid.Row="0" Grid.Column="3" x:Name="btnConnect" Content="CONNECT" 
+                                Margin="5" Width="100" HorizontalAlignment="Right"
+                                Click="btnConnect_Click" />
+
+                        <!-- row 1 -->
+                        <TextBlock Grid.Row="1" Grid.Column="0"  Text="Rack:" Margin="5"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="Rack" Text="0" Margin="5"
+                                 Width="30" HorizontalAlignment="Left" Padding="5"/>
+
+
+
+                        <!-- row 2 -->
+                        <TextBlock Grid.Row="1" Grid.Column="2"  Text="Slot:" Margin="5"/>
+                        <TextBox Grid.Row="1" Grid.Column="3" x:Name="Slot" Text="1" Margin="5"
+                                 Width="30" HorizontalAlignment="Left" Padding="5"/>
+                    
+                        <!-- row 3 -->
+                        <GroupBox Header="CPU Type" Grid.Row="3" Grid.RowSpan="2"
+                                  Grid.Column="0" Grid.ColumnSpan="2"
+                                  Padding="5" Margin="5">
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton x:Name="D" Content="200" Margin="5"/>
+                                <RadioButton x:Name="T" Content="300" Margin="5"/>
+                                <RadioButton x:Name="Q" Content="400" Margin="5"/>
+                                <RadioButton x:Name="MD" Content="1200" IsChecked="True" Margin="5"/>
+                                <RadioButton x:Name="MC" Content="1500" Margin="5"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </Grid>
+                </GroupBox>
+
+                <!-- row 1 -->
+                <GroupBox Header="Read" Grid.Row="1" Margin="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <!-- row 0 -->
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Data type:"
+                                   Margin="5"/>
+                        <ComboBox x:Name="cmboxDataType" Grid.Row="0" Grid.Column="1"
+                                  Margin="5" Width="100" HorizontalAlignment="Left"/>
+
+
+                        <TextBlock Text="DB number: " Grid.Row="0" Grid.Column="2"
+                                   Margin="5" />
+                        <TextBox Grid.Row="0" Grid.Column="3" x:Name="tbkNumDB"
+                                 Margin="5" Width="50" HorizontalAlignment="Left" Padding="5"/>
+
+                        <TextBlock Text="Start address: " Grid.Row="0" Grid.Column="4"
+                                   Margin="5" />
+                        <TextBox Grid.Row="0" Grid.Column="5" x:Name="tbkStartAddr"
+                                 Margin="5" Width="50" HorizontalAlignment="Left" Padding="5"/>
+
+                        <!-- row 1 -->
+                        <TextBlock Text="Node type: " Grid.Row="1" Grid.Column="0"
+                                   Margin="5" />
+                        <ComboBox x:Name="cmboxNodeType" Grid.Row="1" Grid.Column="1"
+                                  Margin="5" Width="100" HorizontalAlignment="Left"/>
+
+                        <!-- row 2-->
+                    
+                        <TextBlock Text="Variable count: " Grid.Row="1" Grid.Column="2"
+                                   Margin="5" />
+                        <TextBox Grid.Row="1" Grid.Column="3" x:Name="tbkVarCount"
+                                 Margin="5" Width="50" HorizontalAlignment="Left" Padding="5"/>
+
+                        <TextBlock Text="Bit count: " Grid.Row="1" Grid.Column="4"
+                                   Margin="5" />
+                        <TextBox Grid.Row="1" Grid.Column="5" x:Name="tbkBitCount"
+                                 Margin="5" Width="30" HorizontalAlignment="Left" Padding="5"
+                                 Text="0"/>
+
+
+                        <Button Grid.Row="2" Grid.Column="6" x:Name="btnSetBit" Content="READ"
+                                Margin="5" IsEnabled="False" Width="100" HorizontalAlignment="Right"
+                                Click="btnSetBit_Click"/>
+                    </Grid>
+                </GroupBox>
+                <!-- row 2 -->
+                <GroupBox Header="Write" Grid.Row="2" Margin="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                   
+                        <!-- row 0-->
+                        <TextBlock Grid.Row="0" Grid.Column="0"  Text="Node to write:"
+                                   Margin="5"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" x:Name="tbkWriteNode"
+                                 Margin="5" Width="100" HorizontalAlignment="Left" Padding="5"/>
+                    
+                        <TextBlock Grid.Row="0" Grid.Column="2"  Text="Data to send:"
+                                   Margin="5"/>
+                        <TextBox Grid.Row="0" Grid.Column="3" x:Name="tbkValoreToSend"
+                                 Margin="5" Width="100" HorizontalAlignment="Left" Padding="5"/>
+
+                        <Button Grid.Row="0" Grid.Column="6" x:Name="btnRESetBit" Content="WRITE" 
+                                Margin="5" IsEnabled="False" Width="100" HorizontalAlignment="Right"
+                                Click="btnRESetBit_Click"/>
+                    </Grid>
+                </GroupBox>
+                <GridSplitter Grid.Row="2" VerticalAlignment="Top" Height="5" HorizontalAlignment="Stretch" />
+                <!-- row 3 -->
+                <GroupBox Header="Log"  Grid.Row="3" Margin="5">
+                    <TextBlock Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" x:Name="outputTexBlock"
+                               Text="" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+                </GroupBox>
+
+            </Grid>
+
+       
+         </Border>
+    </ScrollViewer>
+</Window>
